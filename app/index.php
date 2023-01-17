@@ -36,8 +36,7 @@ if(isset($_SESSION['email'])) {
     header('location:app.php');
     // now you can use this profile info to create account in your website and make user logged in. 
   } else {
-    echo "<p>Select authentication type:</p>";
-    echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
+    require_once 'libs/login.php';
   }
 }
 require_once 'libs/footer.php';
