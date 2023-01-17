@@ -13,6 +13,6 @@ COPY php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /var/www/html
 
-RUN composer -v
-
 USER 1001
+
+RUN composer -v
