@@ -1,5 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
+require_once 'libs/header.php';
  
 // init configuration 
 $clientID = getenv('GC_CLIENT_ID');
@@ -39,5 +40,5 @@ if(isset($_SESSION['email'])) {
     echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
   }
 }
-
+require_once 'libs/footer.php';
 ?>

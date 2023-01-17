@@ -3,3 +3,7 @@
 
 # composer libs
 app/vendor/*
+
+# bootstrap things
+app/public/bootstrap/css/*
+app/public/bootstrap/js/*

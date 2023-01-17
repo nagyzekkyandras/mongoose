@@ -4,12 +4,12 @@
 docker
 ```sh
 # "prod" build
-docker build -f prod.Dockerfile -t learning-php:prod .
-docker run -d -p 80:80 --env-file ./.env learning-php:prod
+docker build -f prod.Dockerfile -t mongoose:prod .
+docker run -d -p 80:80 --env-file ./.env mongoose:prod
 
 # "dev" build
-docker build -f dev.Dockerfile -t learning-php:dev .
-docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env learning-php:dev
+docker build -f dev.Dockerfile -t mongoose:dev .
+docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env mongoose:dev
 
 # to test open: http://localhost/index.php
 ```
@@ -20,4 +20,7 @@ composer require google/apiclient:"^2.0"
 
 # to install the packages defined in the composer files
 composer install
+
+# update dependencies
+composer update
 ```
