@@ -7,3 +7,6 @@ app/vendor/*
 # bootstrap things
 app/public/bootstrap/css/*
 app/public/bootstrap/js/*
+
+# mvn things
+database/target/dependency/*

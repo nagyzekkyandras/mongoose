@@ -1,4 +1,4 @@
-# Learning PHP
+# Mongoose
 
 ### Parancsok
 docker
@@ -12,6 +12,10 @@ docker build -f dev.Dockerfile -t mongoose:dev .
 docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env mongoose:dev
 
 # to test open: http://localhost/index.php
+
+# mysql
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example mysql:8
+# (Use root/example as user/password credentials)
 ```
 composer
 ```sh
@@ -25,8 +29,21 @@ composer install
 composer update
 ```
 
-mysql
+mvn
 ```sh
-docker run -d -p 3306:3306 --name learning-mysql -e MYSQL_ROOT_PASSWORD=example mysql:8
-# (Use root/example as user/password credentials)
+# to get the mysql jar file
+cd database
+mvn dependency:copy-dependencies
+```
+
+liquibase
+```sh
+# to run everything
+liquibase update
+
+# to install the base tables
+liquibase update --labelFilter="base"
+
+# to add test data
+liquibase update --labelFilter="test"
 ```
