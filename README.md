@@ -24,3 +24,9 @@ composer install
 # update dependencies
 composer update
 ```
+
+mysql
+```sh
+docker run -d -p 3306:3306 --name learning-mysql -e MYSQL_ROOT_PASSWORD=example mysql:8
+# (Use root/example as user/password credentials)
+```
