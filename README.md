@@ -14,7 +14,7 @@ docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env mongoose:de
 # to test open: http://localhost/index.php
 
 # mysql
-docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example mysql:8
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=mongoose -e TZ=Europe/Budapest mysql:8
 # (Use root/example as user/password credentials)
 ```
 composer
