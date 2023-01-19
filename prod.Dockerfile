@@ -2,7 +2,7 @@ FROM php:8.2-apache
 
 RUN apt-get update && \
     apt-get install -y libpq-dev git libldap2-dev && \
-    docker-php-ext-install pdo pdo_pgsql ldap
+    docker-php-ext-install pdo pdo_pgsql pdo_mysql ldap
 
 # composer install
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php

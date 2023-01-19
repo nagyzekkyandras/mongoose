@@ -1,12 +1,14 @@
 {
     "require": {
         "google/apiclient": "^2.0",
-        "twbs/bootstrap": "^5.2"
+        "twbs/bootstrap": "^5.2",
+        "doctrine/dbal": "^3.5.3"
     },
     "scripts": {
         "post-update-cmd": [
             "rm -rf public/bootstrap",
-            "cp -R vendor/twbs/bootstrap/dist public/bootstrap"
+            "cp -R vendor/twbs/bootstrap/dist public/bootstrap",
+            "touch public/bootstrap/.gitkeep"
         ]
     }
 }
