@@ -49,3 +49,16 @@ liquibase update --labelFilter="base"
 # to add test data
 liquibase update --labelFilter="test"
 ```
+
+### Environment variables
+Example file: env.example
+| Name | Description|
+|---|---|
+| DB_HOST | Database hostname or IP address.|
+| DB_PORT | Database port.|
+| DB_NAME | Database name.|
+| DB_USERNAME | Database connection username.|
+| DB_PASSWORD | Database connection password.|
+| GC_CLIENT_ID | Google Cloud Client ID.|
+| GC_CLIENT_SECRET | Google Cloud Secret.|
+| GC_CLIENT_URI | Google Cloud auth URI.|
