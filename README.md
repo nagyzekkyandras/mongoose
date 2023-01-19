@@ -1,6 +1,7 @@
 # Mongoose
+Stack: PHP, Composer, Docker, Liquibase, Maven
 
-### Parancsok
+### Commands
 docker
 ```sh
 # "prod" build
@@ -17,9 +18,10 @@ docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env mongoose:de
 docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=mongoose -e TZ=Europe/Budapest mysql:8
 # (Use root/example as user/password credentials)
 ```
+
 composer
 ```sh
-# to add an package (it creates the base composer.json and composer.lock)
+# to add a package (it creates the base composer.json and composer.lock if not exsists)
 composer require google/apiclient:"^2.0"
 
 # to install the packages defined in the composer files
