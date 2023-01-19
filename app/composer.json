@@ -1,6 +1,6 @@
 {
     "require": {
-        "google/apiclient": "^2.0",
+        "google/apiclient": "^2.13.0",
         "twbs/bootstrap": "^5.2",
         "doctrine/dbal": "^3.5.3"
     },
