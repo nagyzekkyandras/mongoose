@@ -1,6 +1,7 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'libs/header.php';
+require_once 'libs/page.php';
+page_header();
  
 // init configuration 
 $clientID = getenv('GC_CLIENT_ID');
@@ -39,5 +40,5 @@ if(isset($_SESSION['email'])) {
     require_once 'libs/login.php';
   }
 }
-require_once 'libs/footer.php';
+page_footer();
 ?>
