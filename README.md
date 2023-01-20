@@ -50,6 +50,18 @@ liquibase update --labelFilter="base"
 liquibase update --labelFilter="test"
 ```
 
+mysql
+```sql
+-- show everything in users table
+SELECT * FROM users;
+
+-- delete user by id
+DELETE FROM users WHERE id = 3;
+
+-- update last_login by id
+UPDATE users SET last_login = '2022-10-10' WHERE id = 4;
+```
+
 ### Environment variables
 Example file: env.example
 | Name | Description|
