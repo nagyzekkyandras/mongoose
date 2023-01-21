@@ -1,23 +1,8 @@
 *** Settings ***
-Documentation    To Validate the Login form
+Documentation    To Validate the Login
 Library        SeleniumLibrary    
 Test Teardown    Close Browser
-
-*** Variables ***
-# base variables
-${PROTOCOL}    http
-${HOST}    127.0.0.1
-${URL}    ${PROTOCOL}://${HOST}/
-
-# login variables
-${LOGIN_PATH}    login.php
-${LOGIN_ERROR_MESSAGE}    css:.alert-danger
-${LOGIN_ADMIN_EMAIL}    admin@admin.hu
-
-# profile variables
-${PROFILE_PATH}    profile.php
-${PROFILE_CHECK}    "Email: ${LOGIN_ADMIN_EMAIL}"
-${PROFILE_ERROR_MESSAGE}    id:email
+Resource      variables.robot
 
 *** Test Cases ***
 Validate Login
@@ -47,15 +32,15 @@ Fill the login Form with bad credentials
     Click Button    loginButton
 
 Checks for error
-    Wait Until Element Is Visible    ${LOGIN_ERROR_MESSAGE}
+    Wait Until Element Is Visible    ${LOGIN_ERROR_ID}
 
 Verify error message
-    ${result}=    Get Text    ${LOGIN_ERROR_MESSAGE}
-    Should Be Equal As Strings    ${result}    Wrong credentials!
-    Element Text Should Be    ${LOGIN_ERROR_MESSAGE}    Wrong credentials!
+    ${result}=    Get Text    ${LOGIN_ERROR_ID}
+    Should Be Equal As Strings    ${result}    ${LOGIN_ERROR_MESSAGE}
+    Element Text Should Be    ${LOGIN_ERROR_ID}    ${LOGIN_ERROR_MESSAGE}
 
 Open Profile page and check email
     Go To    ${URL}${PROFILE_PATH}
-    ${result}=    Get Text    ${PROFILE_ERROR_MESSAGE}
-    Should Be Equal As Strings    ${result}    Email: ${LOGIN_ADMIN_EMAIL}
-    Element Text Should Be    ${PROFILE_ERROR_MESSAGE}    Email: ${LOGIN_ADMIN_EMAIL}
+    ${result}=    Get Text    ${PROFILE_EMAIL_ID}
+    Should Be Equal As Strings    ${result}    ${PROFILE_EMAIL_MESSAGE} 
+    Element Text Should Be    ${PROFILE_EMAIL_ID}    ${PROFILE_EMAIL_MESSAGE} 
