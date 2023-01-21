@@ -4,7 +4,19 @@ require_once 'libs/page.php';
 require_once 'libs/check-session.php';
 require_once 'libs/db-connect.php';
 page_header();
-page_navbar();
+
+$statement = $conn->executeQuery('SELECT permission FROM users WHERE email = ?', array($_SESSION['email']));
+$user = $statement->fetch();
+
+if($user['permission'] != 'admin'){ # if you have no permission redirect to the index page
+    header("location: index.php");
+}
+
+if($user['permission'] == 'admin'){ # generate the navbar
+    page_navbar_admin();
+} else {
+    page_navbar_user();
+}
 
 echo '<div>';
 $sql = "SELECT id,name,email,auth_type,permission,create_date,last_login FROM users";

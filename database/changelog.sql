@@ -17,7 +17,7 @@ CREATE TABLE users (
 --changeset nagyzekkyandras:2 labels:test context:test
 --comment: create test admin user
 INSERT INTO mongoose.users (name, password, email, auth_type, permission, create_date, last_login)
-VALUES ('admin', 'admin', 'admin@admin', 'native', 'admin', now(), now());
+VALUES ('admin', 'admin', 'admin@admin.hu', 'native', 'admin', now(), now());
 --rollback DELETE FROM users WHERE name=admin;
 
 --changeset nagyzekkyandras:3 labels:test context:test
