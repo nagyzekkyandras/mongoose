@@ -14,3 +14,4 @@ database/target/dependency/*
 # robot-framework things
 test/*.xml
 test/*.html
+test/*.png

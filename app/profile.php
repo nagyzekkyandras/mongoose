@@ -16,7 +16,7 @@ if($user['permission'] == 'admin'){
 $statement = $conn->executeQuery('SELECT email,name,permission FROM users WHERE email = ?', array($_SESSION['email']));
 $user = $statement->fetch();
 
-echo '<p>Email: ' . $user['email'] . '</p>';
+echo '<p id="email">Email: ' . $user['email'] . '</p>';
 echo '<p>Name: ' . $user['name'] . '</p>';
 echo '<p>Permission: ' . $user['permission'] . '</p>';
 
