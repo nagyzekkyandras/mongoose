@@ -4,6 +4,12 @@ Library        SeleniumLibrary
 Test Teardown    Close Browser
 
 *** Variables ***
+# base variables
+${PROTOCOL}    http
+${HOST}    127.0.0.1
+${LOGIN_PATH}    login.php
+
+# login variables
 ${LOGIN_ERROR_MESSAGE}    css:.alert-danger
 
 *** Test Cases ***
@@ -20,7 +26,7 @@ Validate Login error
 *** Keywords ***
 Open Browser To Login Page
     Create Webdriver    Chrome    executable_path=/usr/local/bin/chromedriver
-    Go To    http://127.0.0.1/login.php
+    Go To    ${PROTOCOL}://${HOST}/${LOGIN_PATH}
 
 Fill the login Form
     Input Text    id:email    admin@admin.hu
