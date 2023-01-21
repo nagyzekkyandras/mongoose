@@ -4,9 +4,9 @@
     <div class="row">
       <h2 style="text-align:center">Login to Mongoose Dashboard</h2>
       <div class="col text-center">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+        <input id="email" type="email" name="email" placeholder="Email" required>
+        <input id="password" type="password" name="password" placeholder="Password" required>
+        <input id="loginButton" type="submit" value="Login">
       </div>
     </div>
   </form>

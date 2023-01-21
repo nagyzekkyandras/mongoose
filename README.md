@@ -1,5 +1,5 @@
 # Mongoose
-Stack: PHP, Composer, Docker, Liquibase, Maven
+Stack: PHP, Composer, Docker, MySQL, Liquibase, Maven, Robot Framework
 
 ### Commands
 docker
@@ -60,6 +60,22 @@ DELETE FROM users WHERE id = 3;
 
 -- update last_login by id
 UPDATE users SET last_login = '2022-10-10' WHERE id = 4;
+```
+
+robot-framework
+```sh
+# dependencies
+pip3 install robotframework
+pip3 install robotframework-seleniumlibrary
+pip3 install webdrivermanager
+
+# install chrome driver
+sudo webdrivermanager chrome --linkpath /usr/local/bin
+# output:
+# Symlink created: /usr/local/bin/chromedriver
+
+# to run tests
+robot test.robot
 ```
 
 ### Environment variables

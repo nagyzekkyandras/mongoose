@@ -10,3 +10,7 @@ app/public/bootstrap/js/*
 
 # mvn things
 database/target/dependency/*
+
+# robot-framework things
+test/*.xml
+test/*.html
