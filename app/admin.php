@@ -5,8 +5,13 @@ require_once 'libs/check-session.php';
 require_once 'libs/db-connect.php';
 page_header();
 
-$statement = $conn->executeQuery('SELECT permission FROM users WHERE email = ?', array($_SESSION['email']));
-$user = $statement->fetch();
+try {
+    $statement = $conn->executeQuery('SELECT permission FROM users WHERE email = ?', array($_SESSION['email']));
+    $user = $statement->fetch();
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    header("location: error.html");
+} 
 
 if($user['permission'] != 'admin'){ # if you have no permission redirect to the index page
     header("location: index.php");

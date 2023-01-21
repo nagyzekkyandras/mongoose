@@ -36,6 +36,7 @@ if(isset($_SESSION['email'])) {
     $_SESSION['email'] = $email;
     $_SESSION['name'] = $name;
 
+    try {
       // get email
       $query = $conn->createQueryBuilder()
                     ->select('COUNT(id) as count')
@@ -53,35 +54,45 @@ if(isset($_SESSION['email'])) {
         $conn->insert('users', array('name' => $_SESSION['name'], 'email' => $_SESSION['email'], 'auth_type' => 'Google', 'permission' => 'user', 'create_date' => moment(), 'last_login' => moment() ));
       }
 
-    header('location:index.php');
-    // now you can use this profile info to create account in your website and make user logged in. 
+      header('location:index.php');
+      // now you can use this profile info to create account in your website and make user logged in. 
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+        header("location: error.html");
+    } 
+
   } else {
     require_once 'libs/login.php';
   }
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-  // username and password sent from form
-  $query = $conn->createQueryBuilder()
-                  ->select('COUNT(id) as count')
-                  ->from('users')
-                  ->where('password = :password')
-                  ->andWhere('email = :email')
-                  ->setParameter('email', $_POST['email'])
-                  ->setParameter('password', $_POST['password']);
-  $rowcount = $query->execute()->fetch();
-
-  $first_value = reset($rowcount); // First element's value
-
-  if($first_value == 1) {
-     $_SESSION['email'] = $_POST['email'];
-     $conn->update('users', array('last_login' => moment()), array('email' => $_SESSION['email']));
-     // UPDATE users (last_login) VALUES (?) WHERE id = ? (now(), $_SESSION['email'])
-     header("location: index.php");
-  } else {
-    echo '<div class="alert alert-danger text-center" role="alert">Wrong credentials!</div>';
+try {
+  if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // username and password sent from form
+    $query = $conn->createQueryBuilder()
+                    ->select('COUNT(id) as count')
+                    ->from('users')
+                    ->where('password = :password')
+                    ->andWhere('email = :email')
+                    ->setParameter('email', $_POST['email'])
+                    ->setParameter('password', $_POST['password']);
+    $rowcount = $query->execute()->fetch();
+  
+    $first_value = reset($rowcount); // First element's value
+  
+    if($first_value == 1) {
+       $_SESSION['email'] = $_POST['email'];
+       $conn->update('users', array('last_login' => moment()), array('email' => $_SESSION['email']));
+       // UPDATE users (last_login) VALUES (?) WHERE id = ? (now(), $_SESSION['email'])
+       header("location: index.php");
+    } else {
+      echo '<div class="alert alert-danger text-center" role="alert">Wrong credentials!</div>';
+    }
   }
-}
+} catch (Exception $e) {
+  echo 'Caught exception: ',  $e->getMessage(), "\n";
+  header("location: error.html");
+} 
 
 page_footer();
 ?>
