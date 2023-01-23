@@ -5,12 +5,12 @@ require_once 'libs/db-connect.php';
 require_once 'libs/time.php';
 page_header();
  
-// init configuration 
+// init configuration
 $clientID = getenv('GC_CLIENT_ID');
 $clientSecret = getenv('GC_CLIENT_SECRET');
 $redirectUri = getenv('GC_CLIENT_URI');
 
-// create Client Request to access Google API 
+// create Client Request to access Google API
 $client = new Google_Client();
 $client->setClientId($clientID);
 $client->setClientSecret($clientSecret);
@@ -23,7 +23,7 @@ session_start();
 if (isset($_SESSION['email'])) {
     header('location:index.php');
 } else {
-  // authenticate code from Google OAuth Flow 
+  // authenticate code from Google OAuth Flow
   if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
     $client->setAccessToken($token['access_token']);
@@ -55,7 +55,7 @@ if (isset($_SESSION['email'])) {
       }
 
       header('location:index.php');
-      // now you can use this profile info to create account in your website and make user logged in. 
+      // now you can use this profile info to create account in your website and make user logged in.
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
         header("location: error.html");
