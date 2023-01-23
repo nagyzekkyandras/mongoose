@@ -6,8 +6,8 @@ require_once 'libs/page.php';
 page_header();
 
 try {
-    $statement = $conn->executeQuery(
-        'SELECT email,name,permission FROM users WHERE email = ?',array($_SESSION['email']));
+    $querry = 'SELECT email,name,permission FROM users WHERE email = ?';
+    $statement = $conn->executeQuery($querry, array($_SESSION['email']));
     $user = $statement->fetch();
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
