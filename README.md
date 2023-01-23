@@ -6,7 +6,7 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=bugs)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 
-**Stack:** PHP, Composer, Docker, MySQL, Liquibase, Maven, Robot Framework, SonarCloud
+**Stack:** PHP, Composer, Docker, MySQL, Liquibase, Maven, Robot Framework, SonarCloud, Nexus, Github Actions
 
 ### Commands
 docker / php app
