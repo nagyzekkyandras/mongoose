@@ -51,7 +51,12 @@ if (isset($_SESSION['email'])) {
         $conn->update('users', array('last_login' => moment()), array('email' => $_SESSION['email']));
         // UPDATE users (last_login) VALUES (?) WHERE id = ? (now(), $_SESSION['email'])
       } else { // if new member
-        $conn->insert('users', array('name' => $_SESSION['name'], 'email' => $_SESSION['email'], 'auth_type' => 'Google', 'permission' => 'user', 'create_date' => moment(), 'last_login' => moment() ));
+        $conn->insert('users', array('name' => $_SESSION['name'],
+                                     'email' => $_SESSION['email'],
+                                     'auth_type' => 'Google',
+                                     'permission' => 'user',
+                                     'create_date' => moment(),
+                                     'last_login' => moment() ));
       }
 
       header('location:index.php');
@@ -80,7 +85,7 @@ try {
   
     $first_value = reset($rowcount); // First element's value
   
-    if($first_value == 1) {
+    if ($first_value == 1) {
        $_SESSION['email'] = $_POST['email'];
        $conn->update('users', array('last_login' => moment()), array('email' => $_SESSION['email']));
        // UPDATE users (last_login) VALUES (?) WHERE id = ? (now(), $_SESSION['email'])
@@ -92,6 +97,6 @@ try {
 } catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n";
   header("location: error.html");
-} 
+}
 
 page_footer();
