@@ -56,7 +56,7 @@ if (isset($_SESSION['email'])) {
                                      'auth_type' => 'Google',
                                      'permission' => 'user',
                                      'create_date' => moment(),
-                                     'last_login' => moment() ));
+                                     'last_login' => moment()));
       }
 
       header('location:index.php');
@@ -64,7 +64,7 @@ if (isset($_SESSION['email'])) {
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
         header("location: error.html");
-    } 
+    }
 
   } else {
     require_once 'libs/login.php';
