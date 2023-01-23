@@ -13,7 +13,7 @@ try {
     header("location: error.html");
 } 
 
-if($user['permission'] == 'admin'){
+if($user['permission'] == 'admin') {
     page_navbar_admin();
 } else {
     page_navbar_user();
@@ -24,4 +24,3 @@ echo '<p>Name: ' . $user['name'] . '</p>';
 echo '<p>Permission: ' . $user['permission'] . '</p>';
 
 page_footer();
-?>

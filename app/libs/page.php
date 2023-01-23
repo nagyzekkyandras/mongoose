@@ -1,6 +1,6 @@
 <?php
 
-function page_header(){
+function page_header() {
     echo '<!DOCTYPE html>
     <html>
         <head>
@@ -16,7 +16,7 @@ function page_header(){
         <body>';
 }
 
-function page_navbar_admin(){
+function page_navbar_admin() {
   echo '<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
     <div class="container-fluid">
       <ul class="navbar-nav">
@@ -37,7 +37,7 @@ function page_navbar_admin(){
   </nav>';
 }
 
-function page_navbar_user(){
+function page_navbar_user() {
   echo '<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
     <div class="container-fluid">
       <ul class="navbar-nav">
@@ -55,7 +55,7 @@ function page_navbar_user(){
   </nav>';
 }
 
-function html_table($data = array()){
+function html_table($data = array()) {
     $rows = array();
     foreach ($data as $row) {
         $cells = array();
@@ -64,10 +64,18 @@ function html_table($data = array()){
         }
         $rows[] = "<tr>" . implode('', $cells) . "</tr>";
     }
-    echo '<table class="table"><thead><tr><th scope="col">ID</th><th scope="col">NAME</th><th scope="col">EMAIL</th><th scope="col">AUTH TYPE</th><th scope="col">PERMISSION</th><th scope="col">CREATE DATE</th><th scope="col">LAST LOGIN</th></tr></thead>' . implode('', $rows) . "</table>";
+    echo '<table class="table"><thead><tr>
+    <th scope="col">ID</th>
+    <th scope="col">NAME</th>
+    <th scope="col">EMAIL</th>
+    <th scope="col">AUTH TYPE</th>
+    <th scope="col">PERMISSION</th>
+    <th scope="col">CREATE DATE</th>
+    <th scope="col">LAST LOGIN</th>
+    </tr></thead>' . implode('', $rows) . "</table>";
 }
 
-function profile_table($data = array()){
+function profile_table($data = array()) {
     $rows = array();
     foreach ($data as $row) {
         $cells = array();
@@ -76,11 +84,11 @@ function profile_table($data = array()){
         }
         $rows[] = "<tr>" . implode('', $cells) . "</tr>";
     }
-    echo '<table class="table"><thead><tr><th scope="col">NAME</th><th scope="col">EMAIL</th></tr></thead>' . implode('', $rows) . "</table>";
+    echo '<table class="table"><thead><tr>
+    <th scope="col">NAME</th>
+    <th scope="col">EMAIL</th></tr></thead>' . implode('', $rows) . "</table>";
 }
 
-function page_footer(){
+function page_footer() {
     echo '</body></html>';
 }
-
-?>

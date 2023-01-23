@@ -1,6 +1,5 @@
 <?php
-function moment(){
+
+function moment() {
     return date("Y-m-d");
 }
-
-?>
