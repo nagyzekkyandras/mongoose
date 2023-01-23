@@ -1,6 +1,13 @@
 # Specify location of manifest files for each package manager
-
 version: 2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
 updates:
   - package-ecosystem: "composer"
     # Files stored in repository root
