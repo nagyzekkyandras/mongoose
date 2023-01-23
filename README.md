@@ -9,7 +9,7 @@
 **Stack:** PHP, Composer, Docker, MySQL, Liquibase, Maven, Robot Framework, SonarCloud
 
 ### Commands
-docker
+docker / php app
 ```sh
 # "prod" build
 docker build -f prod.Dockerfile -t mongoose:prod .
@@ -20,10 +20,23 @@ docker build -f dev.Dockerfile -t mongoose:dev .
 docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env mongoose:dev
 
 # to test open: http://localhost/index.php
-
+```
+docker / mysql
+```sh
 # mysql
 docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=mongoose -e TZ=Europe/Budapest mysql:8
 # (Use root/example as user/password credentials)
+```
+docker / nexus
+```sh
+# nexus (--platform becouse there are no arm64)
+docker run -d -p 8081:8081 --platform linux/amd64 --name nexus sonatype/nexus3:3.45.0
+
+# see the logs
+docker logs -f nexus 
+
+# get the admin password
+docker exec -it nexus cat /nexus-data/admin.password
 ```
 
 composer
@@ -50,11 +63,11 @@ liquibase
 # to run everything
 liquibase update
 
-# to install the base tables
-liquibase update --labelFilter="base"
-
-# to add test data
+# to install the specific change sets by filter
 liquibase update --labelFilter="test"
+
+# to change the changelog file only
+liquibase update --changelog-file=changelog.test.sql
 ```
 
 mysql
@@ -84,6 +97,18 @@ sudo webdrivermanager chrome --linkpath /usr/local/bin
 # to run tests
 robot login.robot
 robot test-db-errors.robot
+```
+
+nexus3 cli
+```sh
+# install
+pip3 install nexus3-cli
+
+# login
+nexus3 login
+
+# create docker repository
+nexus3 repository create hosted docker mongoose
 ```
 
 ### Environment variables
