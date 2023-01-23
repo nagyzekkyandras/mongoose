@@ -1,6 +1,6 @@
 <?php
 
-function page_header()
+function pageHeader()
 {
     echo '<!DOCTYPE html>
     <html>
@@ -17,7 +17,7 @@ function page_header()
         <body>';
 }
 
-function page_navbar_admin()
+function pageNavbarAdmin()
 {
   echo '<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
     <div class="container-fluid">
@@ -39,7 +39,7 @@ function page_navbar_admin()
   </nav>';
 }
 
-function page_navbar_user()
+function pageNavbarUser()
 {
   echo '<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
     <div class="container-fluid">
@@ -58,7 +58,7 @@ function page_navbar_user()
   </nav>';
 }
 
-function html_table($data = array())
+function htmlTable($data = array())
 {
     $rows = array();
     foreach ($data as $row) {
@@ -79,7 +79,7 @@ function html_table($data = array())
     </tr></thead>' . implode('', $rows) . "</table>";
 }
 
-function profile_table($data = array())
+function profileTable($data = array())
 {
     $rows = array();
     foreach ($data as $row) {
@@ -94,7 +94,7 @@ function profile_table($data = array())
     <th scope="col">EMAIL</th></tr></thead>' . implode('', $rows) . "</table>";
 }
 
-function page_footer()
+function pageFooter()
 {
     echo '</body></html>';
 }

@@ -3,7 +3,7 @@ require_once 'vendor/autoload.php';
 require_once 'libs/page.php';
 require_once 'libs/db-connect.php';
 require_once 'libs/time.php';
-page_header();
+pageHeader();
  
 // init configuration
 $clientID = getenv('GC_CLIENT_ID');
@@ -99,4 +99,4 @@ try {
   header("location: error.html");
 }
 
-page_footer();
+pageFooter();

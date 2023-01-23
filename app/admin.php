@@ -3,7 +3,7 @@ require_once 'vendor/autoload.php';
 require_once 'libs/page.php';
 require_once 'libs/check-session.php';
 require_once 'libs/db-connect.php';
-page_header();
+pageHeader();
 
 try {
     $statement = $conn->executeQuery('SELECT permission FROM users WHERE email = ?', array($_SESSION['email']));
@@ -18,9 +18,9 @@ if ($user['permission'] != 'admin') { # if you have no permission redirect to th
 }
 
 if ($user['permission'] == 'admin') { # generate the navbar
-    page_navbar_admin();
+    pageNavbarAdmin();
 } else {
-    page_navbar_user();
+    pageNavbarUser();
 }
 
 echo '<div>';
@@ -28,6 +28,6 @@ $sql = "SELECT id,name,email,auth_type,permission,create_date,last_login FROM us
 $stmt = $conn->prepare($sql);
 $resultSet = $stmt->executeQuery();
 $users = $resultSet->fetchAllAssociative();
-html_table($users);
+htmlTable($users);
 echo '</div>';
-page_footer();
+pageFooter();

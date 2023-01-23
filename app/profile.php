@@ -3,7 +3,7 @@ require_once 'vendor/autoload.php';
 require_once 'libs/check-session.php';
 require_once 'libs/db-connect.php';
 require_once 'libs/page.php';
-page_header();
+pageHeader();
 
 try {
     $querry = 'SELECT email,name,permission FROM users WHERE email = ?';
@@ -15,13 +15,13 @@ try {
 }
 
 if ($user['permission'] == 'admin') {
-    page_navbar_admin();
+    pageNavbarAdmin();
 } else {
-    page_navbar_user();
+    pageNavbarUser();
 }
 
 echo '<p id="email">Email: ' . $user['email'] . '</p>';
 echo '<p>Name: ' . $user['name'] . '</p>';
 echo '<p>Permission: ' . $user['permission'] . '</p>';
 
-page_footer();
+pageFooter();
