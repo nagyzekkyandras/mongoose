@@ -20,7 +20,7 @@ $client->addScope("profile");
 
 session_start();
 
-if(isset($_SESSION['email'])) {
+if (isset($_SESSION['email'])) {
     header('location:index.php');
 } else {
   // authenticate code from Google OAuth Flow 
@@ -47,7 +47,7 @@ if(isset($_SESSION['email'])) {
 
       $first_value = reset($rowcount); // First element's value
 
-      if($first_value == 1) { // if already member
+      if ($first_value == 1) { // if already member
         $conn->update('users', array('last_login' => moment()), array('email' => $_SESSION['email']));
         // UPDATE users (last_login) VALUES (?) WHERE id = ? (now(), $_SESSION['email'])
       } else { // if new member
@@ -67,7 +67,7 @@ if(isset($_SESSION['email'])) {
 }
 
 try {
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
     $query = $conn->createQueryBuilder()
                     ->select('COUNT(id) as count')

@@ -11,13 +11,12 @@ try {
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
     header("location: error.html");
-} 
+}
 
-if($user['permission'] == 'admin'){
+if ($user['permission'] == 'admin') {
     page_navbar_admin();
 } else {
     page_navbar_user();
 }
 
 page_footer();
-?>

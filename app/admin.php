@@ -11,13 +11,13 @@ try {
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
     header("location: error.html");
-} 
+}
 
-if($user['permission'] != 'admin'){ # if you have no permission redirect to the index page
+if ($user['permission'] != 'admin') { # if you have no permission redirect to the index page
     header("location: index.php");
 }
 
-if($user['permission'] == 'admin'){ # generate the navbar
+if ($user['permission'] == 'admin') { # generate the navbar
     page_navbar_admin();
 } else {
     page_navbar_user();
@@ -31,4 +31,3 @@ $users = $resultSet->fetchAllAssociative();
 html_table($users);
 echo '</div>';
 page_footer();
-?>
