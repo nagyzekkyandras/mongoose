@@ -17,14 +17,14 @@ docker run -d -p 80:80 --env-file ./.env mongoose:prod
 
 # "dev" build
 docker build -f dev.Dockerfile -t mongoose:dev .
-docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env mongoose:dev
+docker run -d -p 80:80 -v "$PWD/app":/var/www/html --env-file ./.env --name app mongoose:dev
 
 # to test open: http://localhost/index.php
 ```
 docker / mysql
 ```sh
 # mysql
-docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=mongoose -e TZ=Europe/Budapest mysql:8
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=mongoose -e TZ=Europe/Budapest --name mysql mysql:8
 # (Use root/example as user/password credentials)
 ```
 docker / nexus
