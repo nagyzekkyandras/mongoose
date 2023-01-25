@@ -25,11 +25,11 @@ echo '<p>Name: ' . $user['name'] . '</p>';
 echo '<p>Permission: ' . $user['permission'] . '</p>';
 
 try {
-    $querry = 'SELECT password FROM users WHERE email = ?';
+    $query = 'SELECT password FROM users WHERE email = ?';
     $statement = $conn->executeQuery($querry, array($_SESSION['email']));
     $pw = $statement->fetch();
 
-    if ($pw['password'] == NULL) {
+    if ($pw['password'] == null) {
         echo '<h3>Update your password!</h3>';
         echo '<form method="POST">
         <div class="mb-3">
@@ -49,25 +49,21 @@ try {
 
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["password1"])) {
+        if (empty($_POST["password1"]) || empty($_POST["password2"])) {
             echo '<div class="alert alert-danger text-center" role="alert">Password is empty!</div>';
-            if (empty($_POST["password2"])) {
-                echo '<div class="alert alert-danger text-center" role="alert">Password again is empty!</div>';
-            }
         }
-        if (!empty($_POST["password1"])) {
-            if (!empty($_POST["password2"])) {
-                if ($_POST["password1"] != $_POST["password2"]) {
-                    echo '<div class="alert alert-danger text-center" role="alert">Passwords not the same!</div>';
-                } else {
-                    $count = $conn->executeUpdate('UPDATE users SET password = ? WHERE email = ?', array($_POST["password1"], $_SESSION['email']));
-                    header('location:profile.php');
-                }
+        if (!empty($_POST["password1"]) || !empty($_POST["password2"])) {
+            if ($_POST["password1"] != $_POST["password2"]) {
+                echo '<div class="alert alert-danger text-center" role="alert">Passwords not the same!</div>';
+            } else {
+                $query = 'UPDATE users SET password = ? WHERE email = ?';
+                $count = $conn->executeUpdate($query, array($_POST["password1"], $_SESSION['email']));
+                header('location:profile.php');
             }
         }
     }
 } catch (Exception $e) {
-
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
 
 pageFooter();
