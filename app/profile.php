@@ -5,12 +5,14 @@ require_once 'libs/db-connect.php';
 require_once 'libs/page.php';
 pageHeader();
 
+$error = "Caught exception: ";
+
 try {
     $query = 'SELECT email,name,permission FROM users WHERE email = ?';
     $statement = $conn->executeQuery($query, array($_SESSION['email']));
     $user = $statement->fetch();
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo $error,  $e->getMessage(), "\n";
     header("location: error.html");
 }
 
@@ -41,7 +43,7 @@ try {
         }
     }
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo $error, $e->getMessage(), "\n";
 }
 
 echo '<h3>Password change:</h3>';
