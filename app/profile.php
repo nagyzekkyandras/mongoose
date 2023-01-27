@@ -26,12 +26,6 @@ echo '<p>Name: ' . $user['name'] . '</p>';
 echo '<p>Permission: ' . $user['permission'] . '</p>';
 
 try {
-
-} catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-}
-
-try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["password1"]) || empty($_POST["password2"])) {
             echo '<div class="alert alert-danger text-center" role="alert">Password is empty!</div>';
