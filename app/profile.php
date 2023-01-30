@@ -3,7 +3,7 @@ require_once 'vendor/autoload.php';
 require_once 'libs/page.php';
 require_once 'libs/check-session.php';
 require_once 'libs/db-connect.php';
-include 'libs/db-connect.php';
+include_once 'libs/profile.php';
 
 pageHeader();
 
