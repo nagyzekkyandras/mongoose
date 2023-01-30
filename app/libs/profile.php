@@ -6,7 +6,7 @@ class Profile {
     public $email;
     public $permission;
 
-    function __construct($name, $email, $permission) {
+    public function __construct($name, $email, $permission) {
         $this->name = $name;
         $this->email = $email;
         $this->permission = $permission;
