@@ -1,8 +1,9 @@
 <?php
 require_once 'vendor/autoload.php';
+require_once 'libs/page.php';
 require_once 'libs/check-session.php';
 require_once 'libs/db-connect.php';
-require_once 'libs/page.php';
+require_once 'libs/profile.php';
 pageHeader();
 
 $error = "Caught exception: ";
@@ -23,9 +24,8 @@ if ($user['permission'] == 'admin') {
 }
 
 echo '<h3>Your profile:</h3>';
-echo '<p id="email">Email: ' . $user['email'] . '</p>';
-echo '<p>Name: ' . $user['name'] . '</p>';
-echo '<p>Permission: ' . $user['permission'] . '</p>';
+$profile = new Profile($user['name'], $user['email'], $user['permission']);
+echo $profile -> getProfileInfo();
 
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
