@@ -1,36 +1,42 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'libs/page.php';
 
 $session = new Session();
 $database = new Database();
+$smarty = new Smarty();
 
 $conn = $database->getConnection();
 $session -> checkSession();
 
-pageHeader();
+$smarty->setTemplateDir('./templates');
+$smarty->setConfigDir('./configs');
+$smarty->setCompileDir('./compile');
+$smarty->setCacheDir('./cache');
+
+$smarty->assign('isProfilePage', true);
+$smarty->assign('isAdminPage', false);
 
 try {
     $result = $database->getUserData();
-
     if ($result['permission'] == 'admin') {
-        pageNavbarAdmin();
+        $smarty->assign('isAdmin', true);
     } else {
-        pageNavbarUser();
+        $smarty->assign('isAdmin', false);
     }
 
     if ($result) {
-        echo "<p id=email>Email: " . $result['email'] . "</p>";
-        echo "<p>Name: " . $result['name'] . "</p>";
-        echo "<p>Permission: " . $result['permission'] . "</p>";
-        echo "<p>Auth type: " . $result['auth_type'] . "</p>";
-        echo "<p>Create Date: " . $result['create_date'] . "</p>";
+        $smarty->assign('name', $result['name']);
+        $smarty->assign('email', $result['email']);
+        $smarty->assign('permission', $result['permission']);
+        $smarty->assign('auth_type', $result['auth_type']);
+        $smarty->assign('create_date', $result['create_date']);
     }
 } catch (Exception $e) {
     echo $error,  $e->getMessage(), "\n";
     header("location: error.html");
 }
 
+// password change
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["password1"]) || empty($_POST["password2"])) {
@@ -50,17 +56,4 @@ try {
     echo $error, $e->getMessage(), "\n";
 }
 
-echo '<h3>Password change:</h3>';
-echo '<form method="POST">
-<div class="mb-3">
-  <label for="inputPassword1" class="form-label">Password</label>
-  <input type="password" name="password1" class="form-control" id="inputPassword1">
-</div>
-<div class="mb-3">
-  <label for="inputPassword2" class="form-label">Password again</label>
-  <input type="password" name="password2" class="form-control" id="inputPassword2">
-</div>
-<button type="submit" class="btn btn-primary">Submit</button>
-</form>';
-
-pageFooter();
+$smarty->display('index.tpl');

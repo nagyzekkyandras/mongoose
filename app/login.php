@@ -1,15 +1,20 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'libs/page.php';
 
 $session = new Session();
 $database = new Database();
+$smarty = new Smarty();
 
+// init smarty
+$smarty->setTemplateDir('./templates');
+$smarty->setConfigDir('./configs');
+$smarty->setCompileDir('./compile');
+$smarty->setCacheDir('./cache');
+
+// init db
 $conn = $database->getConnection();
 
-pageHeader();
-
-// init configuration
+// init google login configuration
 $clientID = getenv('GC_CLIENT_ID');
 $clientSecret = getenv('GC_CLIENT_SECRET');
 $redirectUri = getenv('GC_CLIENT_URI');
@@ -52,9 +57,6 @@ if (isset($_SESSION['email'])) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
         header("location: error.html");
     }
-
-  } else {
-    require_once 'libs/login.php';
   }
 }
 
@@ -75,4 +77,5 @@ try {
   header("location: error.html");
 }
 
-pageFooter();
+$smarty->assign('action', $client->createAuthUrl());
+$smarty->display('login.tpl');

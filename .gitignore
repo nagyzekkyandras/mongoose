@@ -7,6 +7,11 @@
 # tmp files
 tmp.txt
 
+# smarty files
+app/cache/*
+app/compile/*
+app/templates_c/*
+
 # composer libs
 app/vendor/*
 

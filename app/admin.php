@@ -1,21 +1,28 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'libs/page.php';
 
 $session = new Session();
 $database = new Database();
+$smarty = new Smarty();
 
 $conn = $database->getConnection();
 $session -> checkSession();
 
-pageHeader();
+$smarty->setTemplateDir('./templates');
+$smarty->setConfigDir('./configs');
+$smarty->setCompileDir('./compile');
+$smarty->setCacheDir('./cache');
+$smarty->assign('isProfilePage', false);
+$smarty->assign('isAdminPage', true);
 
 try {
     $result = $database->getUserData();
     if ($result['permission'] == 'admin') {
-        pageNavbarAdmin();
+        $smarty->assign('isAdmin', true);
+        $users = $database->adminListUsers();
+        $smarty->assign('users', $users);
     } else {
-        pageNavbarUser();
+        $smarty->assign('isAdmin', false);
         // if you have no permission redirect to the index page
         header("location: index.php");
     }
@@ -24,8 +31,4 @@ try {
     header("location: error.html");
 }
 
-echo '<div>';
-$result = $database->adminListUsers();
-htmlTable($result);
-echo '</div>';
-pageFooter();
+$smarty->display('index.tpl');
