@@ -1,4 +1,5 @@
 {* Smarty *}
+<h3>Account informations:</h3>
 <p id=email>Email: {$email} </p>
 <p>Name: {$name} </p>
 <p>Permission: {$permission} </p>

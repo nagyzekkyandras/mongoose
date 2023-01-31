@@ -89,6 +89,14 @@ UPDATE users SET last_login = '2022-10-10' WHERE id = 4;
 
 -- count query
 select count(id) as count from users where email='admin@admin.hu';
+
+-- insert
+INSERT INTO gitlab (name, url) VALUES ('gitlab-dev', 'https://gitlab-dev.cegem.hu');
+
+-- check the active connections
+show status where `variable_name` = 'Threads_connected';
+-- or
+show processlist;
 ```
 
 robot-framework

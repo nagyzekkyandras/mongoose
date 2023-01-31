@@ -21,6 +21,8 @@ try {
         $smarty->assign('isAdmin', true);
         $users = $database->adminListUsers();
         $smarty->assign('users', $users);
+        $gitlabs = $database->adminListGitlabs();
+        $smarty->assign('gitlabs', $gitlabs);
     } else {
         $smarty->assign('isAdmin', false);
         // if you have no permission redirect to the index page

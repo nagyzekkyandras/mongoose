@@ -81,6 +81,14 @@ class Database
         return $resultSet->fetchAllAssociative();
     }
 
+    public function adminListGitlabs()
+    {
+        $query = "SELECT id,name,url FROM gitlab";
+        $stmt = $this->conn->prepare($query);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function createNewGoogleUser()
     {
         $this->conn->insert('users', array('name' => $_SESSION['name'],
