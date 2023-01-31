@@ -49,6 +49,9 @@ composer install
 
 # update dependencies
 composer update
+
+# autoload file check and regenerate
+composer dump-autoload
 ```
 
 mvn

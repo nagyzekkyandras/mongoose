@@ -2,31 +2,31 @@
 require_once 'vendor/autoload.php';
 require_once 'libs/page.php';
 require_once 'libs/check-session.php';
-require_once 'libs/db-connect.php';
-//include_once 'libs/profile.php';
 
 pageHeader();
 
-$error = "Caught exception: ";
-
 try {
-    $query = 'SELECT email,name,permission FROM users WHERE email = ?';
-    $statement = $conn->executeQuery($query, array($_SESSION['email']));
-    $user = $statement->fetch();
+    $database = new Database();
+    $conn = $database->getConnection();
+    $result = $database->getUserData();
+
+    if ($result['permission'] == 'admin') {
+        pageNavbarAdmin();
+    } else {
+        pageNavbarUser();
+    }
+
+    if ($result) {
+        echo "<p>Email: " . $result['email'] . "</p>";
+        echo "<p>Name: " . $result['name'] . "</p>";
+        echo "<p>Permission: " . $result['permission'] . "</p>";
+        echo "<p>Auth type: " . $result['auth_type'] . "</p>";
+        echo "<p>Create Date: " . $result['create_date'] . "</p>";
+    }
 } catch (Exception $e) {
     echo $error,  $e->getMessage(), "\n";
     header("location: error.html");
 }
-
-if ($user['permission'] == 'admin') {
-    pageNavbarAdmin();
-} else {
-    pageNavbarUser();
-}
-
-echo '<h3>Your profile:</h3>';
-$profile = new Profile($user['name'], $user['email'], $user['permission']);
-echo $profile -> getProfileInfo();
 
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,8 +37,9 @@ try {
             if ($_POST["password1"] != $_POST["password2"]) {
                 echo '<div class="alert alert-danger text-center" role="alert">Passwords not the same!</div>';
             } else {
-                $query = 'UPDATE users SET password = ? WHERE email = ?';
-                $count = $conn->executeUpdate($query, array($_POST["password1"], $_SESSION['email']));
+                $database = new Database();
+                $conn = $database->getConnection();
+                $result = $database->updatePassword();
                 echo '<div class="alert alert-success text-center" role="alert">Pasword changed!</div>';
             }
         }
