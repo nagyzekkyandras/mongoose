@@ -34,7 +34,7 @@ class Database
     public function updatePassword()
     {
         $query = 'UPDATE users SET password = ? WHERE email = ?';
-        return $count = $this->conn->executeUpdate($query, array($_POST["password1"], $_SESSION['email']));
+        return $this->conn->executeUpdate($query, array($_POST["password1"], $_SESSION['email']));
     }
 
     public function updateLastLogin()
@@ -60,7 +60,7 @@ class Database
                         ->setParameter('email', $_POST['email'])
                         ->setParameter('password', $_POST['password']);
         // First element's value
-        return $query->execute()->fetch(); 
+        return $query->execute()->fetch();
     }
 
     public function checkUserEmail()
@@ -70,7 +70,7 @@ class Database
                       ->from('users')
                       ->where('email = :email')
                       ->setParameter('email', $_SESSION['email']);
-        return $query->execute()->fetch(); 
+        return $query->execute()->fetch();
     }
 
     public function adminListUsers()
