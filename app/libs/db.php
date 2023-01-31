@@ -34,8 +34,7 @@ class Database
     public function updatePassword()
     {
         $query = 'UPDATE users SET password = ? WHERE email = ?';
-        $count = $this->conn->executeUpdate($query, array($_POST["password1"], $_SESSION['email']));
-        return $count; // 1
+        return $count = $this->conn->executeUpdate($query, array($_POST["password1"], $_SESSION['email'])); // 1
     }
 
 }
