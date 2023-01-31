@@ -2,7 +2,8 @@
     "require": {
         "google/apiclient": "^2.13.0",
         "twbs/bootstrap": "^5.2",
-        "doctrine/dbal": "^3.5.3"
+        "doctrine/dbal": "^3.5.3",
+        "curl/curl": "^2.5"
     },
     "scripts": {
         "post-update-cmd": [
@@ -10,5 +11,8 @@
             "cp -R vendor/twbs/bootstrap/dist public/bootstrap",
             "touch public/bootstrap/.gitkeep"
         ]
+    },
+    "autoload": {
+        "classmap": ["libs"]
     }
 }

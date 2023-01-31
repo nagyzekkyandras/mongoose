@@ -4,6 +4,9 @@
 # secrets
 .env
 
+# tmp files
+tmp.txt
+
 # composer libs
 app/vendor/*
 

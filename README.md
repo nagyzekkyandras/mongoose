@@ -30,7 +30,7 @@ docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=mong
 docker / nexus
 ```sh
 # nexus (--platform becouse there are no arm64)
-docker run -d -p 8081:8081 --platform linux/amd64 --name nexus sonatype/nexus3:3.45.0
+docker run -d -p 8081:8081 --name nexus sonatype/nexus3:3.45.0
 
 # see the logs
 docker logs -f nexus 
