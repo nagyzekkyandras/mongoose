@@ -83,6 +83,9 @@ DELETE FROM users WHERE id = 3;
 
 -- update last_login by id
 UPDATE users SET last_login = '2022-10-10' WHERE id = 4;
+
+-- count query
+select count(id) as count from users where email='admin@admin.hu';
 ```
 
 robot-framework

@@ -1,22 +1,26 @@
 <?php
 require_once 'vendor/autoload.php';
 require_once 'libs/page.php';
-require_once 'libs/check-session.php';
-require_once 'libs/db-connect.php';
+
+$session = new Session();
+$database = new Database();
+
+$session -> checkSession();
+
 pageHeader();
 
 try {
-    $statement = $conn->executeQuery('SELECT permission FROM users WHERE email = ?', array($_SESSION['email']));
-    $user = $statement->fetch();
-} catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-    header("location: error.html");
-}
+    $conn = $database->getConnection();
+    $result = $database->getUserData();
 
-if ($user['permission'] == 'admin') {
-    pageNavbarAdmin();
-} else {
-    pageNavbarUser();
+    if ($result['permission'] == 'admin') {
+        pageNavbarAdmin();
+    } else {
+        pageNavbarUser();
+    }
+} catch (Exception $e) {
+    echo $error,  $e->getMessage(), "\n";
+    header("location: error.html");
 }
 
 pageFooter();

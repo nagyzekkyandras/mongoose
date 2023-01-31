@@ -1,13 +1,16 @@
 <?php
 require_once 'vendor/autoload.php';
 require_once 'libs/page.php';
-require_once 'libs/check-session.php';
+
+$session = new Session();
+$database = new Database();
+
+$conn = $database->getConnection();
+$session -> checkSession();
 
 pageHeader();
 
 try {
-    $database = new Database();
-    $conn = $database->getConnection();
     $result = $database->getUserData();
 
     if ($result['permission'] == 'admin') {
@@ -17,7 +20,7 @@ try {
     }
 
     if ($result) {
-        echo "<p>Email: " . $result['email'] . "</p>";
+        echo "<p id=email>Email: " . $result['email'] . "</p>";
         echo "<p>Name: " . $result['name'] . "</p>";
         echo "<p>Permission: " . $result['permission'] . "</p>";
         echo "<p>Auth type: " . $result['auth_type'] . "</p>";
@@ -37,7 +40,6 @@ try {
             if ($_POST["password1"] != $_POST["password2"]) {
                 echo '<div class="alert alert-danger text-center" role="alert">Passwords not the same!</div>';
             } else {
-                $database = new Database();
                 $conn = $database->getConnection();
                 $result = $database->updatePassword();
                 echo '<div class="alert alert-success text-center" role="alert">Pasword changed!</div>';
