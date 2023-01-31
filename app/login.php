@@ -6,7 +6,6 @@ $session = new Session();
 $database = new Database();
 
 $conn = $database->getConnection();
-//$session -> checkSession();
 
 pageHeader();
 
