@@ -129,6 +129,7 @@ Example file: env.example
 | DB_NAME | Database name.|
 | DB_USERNAME | Database connection username.|
 | DB_PASSWORD | Database connection password.|
+| DB_DRIVER | Database connection driver.|
 | GC_CLIENT_ID | Google Cloud Client ID.|
 | GC_CLIENT_SECRET | Google Cloud Secret.|
 | GC_CLIENT_URI | Google Cloud auth URI.|
