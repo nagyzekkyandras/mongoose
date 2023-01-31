@@ -3,8 +3,11 @@
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=bugs)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 
 **Stack:** PHP, Composer, Docker, MySQL, Liquibase, Maven, Robot Framework, SonarCloud, Nexus, Github Actions
 
