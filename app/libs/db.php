@@ -89,6 +89,14 @@ class Database
         return $resultSet->fetchAllAssociative();
     }
 
+    public function adminListNexus()
+    {
+        $query = "SELECT id,name,username,url,create_date FROM nexus";
+        $stmt = $this->conn->prepare($query);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function createNewGoogleUser()
     {
         $this->conn->insert('users', array('name' => $_SESSION['name'],

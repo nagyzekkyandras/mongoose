@@ -9,6 +9,8 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=bugs)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=nagyzekkyandras_mongoose&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=nagyzekkyandras_mongoose)
 
+[![GitHub Repo stars](https://img.shields.io/github/stars/nagyzekkyandras/mongoose)](https://github.com/nagyzekkyandras/mongoose/stargazers)
+
 **Stack:** PHP, Composer, Docker, MySQL, Liquibase, Maven, Robot Framework, SonarCloud, Nexus, Github Actions
 
 ### Commands

@@ -36,9 +36,28 @@
   <h2>Nexus</h2>
   <a href="#nexus" class="btn btn-primary" data-bs-toggle="collapse">Show repositories</a>
   <div id="nexus" class="collapse">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">USERNAME</th>
+                <th scope="col">URL</th>
+                <th scope="col">CREATE DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+        {foreach item='repo' from=$nexus}
+        <tr>
+            <td>{$repo.id}</td>
+            <td>{$repo.name}</td>
+            <td>{$repo.username}</td>
+            <td>{$repo.url}</td>
+            <td>{$repo.create_date}</td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
   </div>
 </div>
 

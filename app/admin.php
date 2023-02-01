@@ -23,13 +23,15 @@ try {
         $smarty->assign('users', $users);
         $gitlabs = $database->adminListGitlabs();
         $smarty->assign('gitlabs', $gitlabs);
+        $nexus = $database->adminListNexus();
+        $smarty->assign('nexus', $nexus);
     } else {
         $smarty->assign('isAdmin', false);
         // if you have no permission redirect to the index page
         header("location: index.php");
     }
 } catch (Exception $e) {
-    echo $error,  $e->getMessage(), "\n";
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
     header("location: error.html");
 }
 
