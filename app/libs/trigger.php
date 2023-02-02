@@ -4,7 +4,7 @@ class Trigger
 {
     public $curl;
 
-    function __construct()
+    public function __construct()
     {
         $this->curl = new Curl\Curl();
     }
