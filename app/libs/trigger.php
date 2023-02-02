@@ -4,7 +4,8 @@ class Trigger
 {
     public $curl;
 
-    function __construct() {
+    function __construct()
+    {
         $this->curl = new Curl\Curl();
     }
 
@@ -15,14 +16,12 @@ class Trigger
         $this->curl->setHeader('X-Requested-With', 'XMLHttpRequest');
         $this->curl->setCookie('key', 'value');
         $this->curl->get($url);
-
         if ($this->curl->error) {
             # If the server is not reachable the error code is 6
             $value = $this->curl->error_code;
         } else {
             $value = $this->curl->response;
         }
-
         return $value;
     }
 }
