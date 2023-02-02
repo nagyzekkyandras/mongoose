@@ -97,6 +97,23 @@ class Database
         return $resultSet->fetchAllAssociative();
     }
 
+    public function getTriggerDatas(int $id)
+    {
+        $query = "SELECT nexus.url as nexus_url,
+                         nexus.username as username,
+                         nexus.password as password,
+                         gitlab.url as gitlab,
+                         pipeline.gitlab_pipeline_id as gitlab_pipeline_id
+                  FROM triggers
+                  INNER JOIN nexus ON triggers.nexus_id = nexus.id
+                  INNER JOIN gitlab ON triggers.gitlab_id = gitlab.id
+                  INNER JOIN pipeline ON triggers.pipeline_id = pipeline.id
+                  WHERE pipeline.id = ?";
+        $stmt = $this->conn->prepare($query);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative($query, array($id));
+    }
+
     public function createNewGoogleUser()
     {
         $this->conn->insert('users', array('name' => $_SESSION['name'],
