@@ -24,5 +24,5 @@ jobs:
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v2
         with:
-          base-ref: "${{ steps.branch-name.outputs.base_ref_branch }}"
-          head-ref: "${{ steps.branch-name.outputs.head_ref_branch }}"
+          base_ref: "${{ steps.branch-name.outputs.base_ref_branch }}"
+          head_ref: "${{ steps.branch-name.outputs.head_ref_branch }}"
