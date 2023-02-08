@@ -18,7 +18,16 @@ jobs:
   dependency-review:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Head Ref branch name
+        run: |
+          echo "${{ steps.branch-name.outputs.head_ref_branch }}"
+
+      - name: Get Base Ref branch name
+        run: |
+          echo "${{ steps.branch-name.outputs.base_ref_branch }}"
+
       - name: 'Checkout Repository'
         uses: actions/checkout@v3
+
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v2
